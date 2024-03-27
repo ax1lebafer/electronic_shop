@@ -47,10 +47,11 @@ button {
   position: absolute;
   left: 15px;
   top: -8px;
+  display: flex;
+  justify-content: center;
 }
 .header__counter {
   position: absolute;
-  left: 4px;
   color: rgb(255, 255, 255);
   font-size: 15px;
   font-weight: 500;
@@ -71,7 +72,6 @@ button {
 .logo {
   transition: all 0.3s;
 }
-
 .logo:hover {
   text-decoration: none;
   scale: 1.1;
@@ -93,6 +93,10 @@ button {
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
+}
+.section__cart {
+  color: rgb(28, 28, 39);
+  margin-bottom: 13px;
 }
 
 .product {
@@ -117,6 +121,9 @@ button {
   gap: 25px;
   margin-top: 54px;
   flex-direction: column;
+}
+.product__container-sale {
+  gap: 9px;
 }
 .product__info {
   display: flex;
@@ -236,4 +243,41 @@ button {
   display: flex;
   align-items: center;
   gap: 18px;
+}
+
+.cart__product {
+  width: 633px;
+  height: 218px;
+  border-radius: 30px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+  background-color: rgb(255, 255, 255);
+}
+.cart__content {
+  display: flex;
+  gap: 23px;
+}
+.cart__image {
+  width: 146.53px;
+  height: 136px;
+}
+.cart__info {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+}
+.cart__heading {
+  color: rgb(28, 28, 39);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: 0%;
+  text-align: left;
+}
+.cart__price {
+  color: rgb(170, 170, 170);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0%;
+  text-align: left;
 }/*# sourceMappingURL=style.css.map */

@@ -49,11 +49,12 @@ button {
         position: absolute;
         left: 15px;
         top: -8px;
+        display: flex;
+        justify-content: center;
     }
 
     &__counter {
         position: absolute;
-        left: 4px;
         color: rgb(255, 255, 255);
         font-size: 15px;
         font-weight: 500;
@@ -74,11 +75,11 @@ button {
 
 .logo {
     transition: all .3s;
-}
 
-.logo:hover {
-    text-decoration: none;
-    scale: 1.1;
+    &:hover {
+        text-decoration: none;
+        scale: 1.1;
+    }
 }
 
 .section {
@@ -99,6 +100,19 @@ button {
         gap: 30px;
         flex-wrap: wrap;
     }
+
+    &__cart {
+        color: rgb(28, 28, 39);
+        margin-bottom: 13px;
+    }
+
+    // &__content {
+    //     width: 633px;
+    //     height: 218px;
+    //     border-radius: 30px;
+    //     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+    //     background-color: rgb(255, 255, 255);
+    // }
 }
 
 .product {
@@ -124,6 +138,10 @@ button {
         gap: 25px;
         margin-top: 54px;
         flex-direction: column;
+    }
+
+    &__container-sale {
+        gap: 9px;
     }
 
     &__info {
@@ -261,5 +279,51 @@ button {
         display: flex;
         align-items: center;
         gap: 18px;
+    }
+}
+
+.cart {
+
+    &__product {
+        width: 633px;
+        height: 218px;
+        border-radius: 30px;
+        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+        background-color: rgb(255, 255, 255);
+    }
+
+    &__content {
+        display: flex;
+        // align-items: center;
+        gap: 23px;
+    }
+
+    &__image {
+        width: 146.53px;
+        height: 136px;
+    }
+
+    &__info {
+        display: flex;
+        gap: 12px;
+        flex-direction: column;
+    }
+
+    &__heading {
+        color: rgb(28, 28, 39);
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 21px;
+        letter-spacing: 0%;
+        text-align: left;
+    }
+
+    &__price {
+        color: rgb(170, 170, 170);
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 18px;
+        letter-spacing: 0%;
+        text-align: left;
     }
 }
