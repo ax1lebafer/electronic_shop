@@ -245,6 +245,14 @@ button {
   gap: 18px;
 }
 
+.cart__section {
+  display: flex;
+  justify-content: space-between;
+}
+.cart__heading {
+  color: rgb(28, 28, 39);
+  margin-bottom: 13px;
+}
 .cart__product {
   width: 633px;
   height: 218px;
@@ -280,4 +288,11 @@ button {
   line-height: 18px;
   letter-spacing: 0%;
   text-align: left;
+}
+.cart__buy {
+  width: 350px;
+  height: 114px;
+  border-radius: 30px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+  background-color: rgb(255, 255, 255);
 }/*# sourceMappingURL=style.css.map */
