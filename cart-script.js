@@ -1,5 +1,5 @@
 const cartContentBox = document.querySelector(".cart__item");
-const cartBuyContent = document.querySelector('.cart__buy');
+const cartBuyContent = document.querySelector(".cart__buy");
 
 const productsToCart = [
   {
@@ -8,25 +8,41 @@ const productsToCart = [
     price: 2927,
     oldPrice: 3527,
     rate: 4.7,
+    count: 1,
+    id: 1,
   },
+  {
+    img: "./img/Image-1.png",
+    title: "Apple BYZ S852I",
+    price: 2927,
+    oldPrice: 3527,
+    rate: 4.7,
+    count: 1,
+    id: 15,
+  },
+  // {
+  //   img: "./img/Image-1.png",
+  //   title: "Apple BYZ S852I",
+  //   price: 2927,
+  //   oldPrice: 3527,
+  //   rate: 4.7,
+  //   count: 1,
+  //   id: 18,
+  // },
 ];
 
-const renderCartBuyElement = () => {
-    const buyForm = productsToCart.map((product) => {
-        return `<div class="cart__pay">
+const renderCartBuyElement = (totalPrice) => {
+  cartBuyContent.innerHTML = `<div class="cart__pay">
         <p class="cart__total">ИТОГО</p>
-        <p class="cart__total cart__fullcost">₽ ${product.price}</p>
+        <p class="cart__total cart__fullcost">₽ ${totalPrice}</p>
       </div>
-      <button class="cart__button">Перейти к оформлению</button>`
-    })
-    .join('');
-
-    cartBuyContent.innerHTML = buyForm;
-}
+      <button class="cart__button">Перейти к оформлению</button>`;
+};
 
 const renderProductsToCart = () => {
-  const productsHtml = productsToCart.map((product) => {
-    return `<article class="cart__product">
+  const productsHtml = productsToCart
+    .map((product) => {
+      return `<article class="cart__product">
     <div class="cart__section">
       <div class="cart__box">
         <img
@@ -62,7 +78,7 @@ const renderProductsToCart = () => {
     </div>
     <div class="cart__footer">
       <div class="cart__bottom">
-        <button class="cart__knob cart__reduce">
+        <button class="cart__knob cart__reduce" data-index="${product.id}">
           <svg
             width="30.000000"
             height="30.000000"
@@ -90,9 +106,9 @@ const renderProductsToCart = () => {
             />
           </svg>
         </button>
-        <p class="cart__counter">1</p>
+        <p class="cart__counter">${product.count}</p>
         <!-- <input class="cart__counter" type="number" name="count" value="1" min="1"> -->
-        <button class="cart__knob cart__add">
+        <button class="cart__knob cart__add" data-index="${product.id}">
           <svg
             width="30.000000"
             height="30.000000"
@@ -121,40 +137,47 @@ const renderProductsToCart = () => {
           </svg>
         </button>
       </div>
-      <p class="cart__total-price">${product.price} ₽</p>
+      <p class="cart__total-price">${product.price * product.count} ₽</p>
     </div>
-  </article>`
-  })
-  .join('');
+  </article>`;
+    })
+    .join("");
 
   cartContentBox.innerHTML = productsHtml;
 
-  renderCartBuyElement();
+  initProductButtons();
+
+  const price = productsToCart.reduce(
+    (acc, product) => acc + product.price * product.count,
+    0
+  );
+  renderCartBuyElement(price);
 };
+
 
 renderProductsToCart();
 
-const addProductCounter = document.querySelector(".cart__add");
-const reduceProductCounter = document.querySelector(".cart__reduce");
-const productCounter = document.querySelector(".cart__counter");
+const cartTotalPrice = document.querySelector(".cart__total-price");
+const addProductButton = document.querySelector(".cart__add");
+const totalPriceProduct = document.querySelector(".cart__total-price");
 
-// Функция увеличения счетчика товара
-const initAddProductCounter = () => {
-  addProductCounter.addEventListener("click", () => {
-    productCounter.textContent++;
+// Функция увеличения и уменьшения счетчика товара
+function initProductButtons() {
+  const addButtons = document.querySelectorAll(".cart__add");
+  const reduceButtons = document.querySelectorAll(".cart__reduce");
+
+  [...addButtons, ...reduceButtons].forEach((button) => {
+    button.addEventListener("click", () => {
+      const id = Number(button.dataset.index);
+      productsToCart
+        .filter((product) => product.id === id)
+        .map((product) => {
+          if (button.classList.contains('cart__add'))
+            ++product.count;
+          else
+            --product.count;
+          renderProductsToCart();
+        });
+    });
   });
-};
-
-// Функия уменьшения счетчика товара
-const initReduceProductCounter = () => {
-  reduceProductCounter.addEventListener("click", () => {
-    if (productCounter.textContent <= 0) {
-      productCounter.textContent = 0;
-    } else {
-      productCounter.textContent--;
-    }
-  });
-};
-
-initAddProductCounter();
-initReduceProductCounter();
+}
